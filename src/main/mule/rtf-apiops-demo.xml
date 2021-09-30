@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="d26c05f4-acba-4533-b968-295d80b5d886" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="rtf-apiops-demoFlow" doc:id="ed2a1ef4-416d-4c96-8cab-2f0a91720147" >
+		<http:listener doc:name="Listener" doc:id="df0f062b-ba21-43c1-b8a5-7b8b000ca110" config-ref="HTTP_Listener_config" path="/api"/>
+		<set-variable value="${demo.value} " doc:name="Set Variable" doc:id="a996c0e1-3345-48c2-bb80-e48070e98833" variableName="propertyVal"/>
+		<set-payload value='#[%dw 2.0&#10;output application/json&#10;---&#10;{&#10;	"value": vars.propertyVal&#10;}]' doc:name="Set Payload" doc:id="8dd953f6-5cff-476f-ba89-a10c1eda4068" />
+	</flow>
+</mule>
