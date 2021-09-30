@@ -83,7 +83,7 @@ pipeline {
         stage('Deploy to Cloudhub'){
         	steps {
 				 withCredentials([file(credentialsId: 'settings', variable: 'settings')]){
-        	    		sh "mvn -f pom.xml -s $settings package deploy -DskipTests -Dusername=bejoy_njc -Dpassword=Mule1234 -DapplicationName=jenkineprojectnew  -DskipTests -Dap.client_id=fda777bd3e3b4fcb93aff995fea2043d -Dap.client_secret=4193AA1986054C548Bf757fd1B7F6f18 -Dsecure.key=mule -Dapp.runtime.semver=4.3.0 -Ddeployment.env=dev -Danypoint.businessGroup='NJC POC'"
+        	    		sh "mvn -f pom.xml -s $settings package deploy -DskipTests -Dusername=bejoy_njc -Dpassword=Mule1234 -DapplicationName=templateprojecjenk  -DskipTests  -Dsecure.key=mule -Dapp.runtime.server=4.3.0 -Ddeployment.env=dev -Danypoint.businessGroup='NJC POC'"
 
 				 }
              	  }
